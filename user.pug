@@ -2,12 +2,24 @@ extends layout
 
 block layout-content
   div.View.UserView
-    h1.Banner Howdy, #{userProfile.nickname}!
+    h1.Banner About:#{userProfile.nickname}
     div.Message
       div.Title
-        h3 Making Us the Best
-        h1 Teammate Profile
-      pre.Details=JSON.stringify(userProfile, null, 2)
+        h3 Profile:
+        h2 Entry-Level Developer
+      p Caleb Reiman
+      p CSUSB  
+      p B.S Computer Science 
+      p Email : 00325521@coyote.csusb.edu
+      img(src="Caleb.jpg", alt="Me" width="200" height="200")
+       
+          
+         
+        
+      
+        
     div.NavButtons
       a(href="/logout")
         div.NavButton Log out
+      a(href="/")
+        div.NavButton Go Back

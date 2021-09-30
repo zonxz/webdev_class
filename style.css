@@ -85,7 +85,7 @@ a {
   border-radius: 5px;
 
   overflow: hidden;
-  background: white;
+  background: cornsilk;
   padding: 15px;
 
   font-family: "Share Tech Mono", monospace;
@@ -127,7 +127,7 @@ a {
   height: 55px;
   width: 150px;
 
-  background: #fa4141;
+  background: orangered;
 
   border-radius: 30px;
 
@@ -140,8 +140,16 @@ a {
   border-bottom: var(--ui-shadow-border);
   box-shadow: var(--ui-shadow);
 }
-
+.img{
+  border-radius: 50%;
+}
 .WelcomeView {
   background: url("computer.jpg") left bottom;
+  background-size: cover;
+}
+
+.UserView {
+  
+  background-color: peachpuff;
   background-size: cover;
 }

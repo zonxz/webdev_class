@@ -9,14 +9,16 @@
  * Required External Modules
  */
 
- const express = require("express");
+ var express = require("express");
+ var bodyParser = require("body-parser")
  const path = require("path");
- var lemon = require("./script/test.js");
+ var lemon = require("./script/test.js"); //just testing importing custom script
 /**
  * App Variables
  */
 
- const app = express();
+ var app = express();
+ var urlencodedParser = bodyParser.urlencoded({extended:false})
  const port = process.env.PORT || "8000";
 
 /**
@@ -25,6 +27,7 @@
 
  app.set("views", path.join(__dirname, "views"));
  app.set("view engine", "pug");
+ //app.use(express.urlencoded({ extended: false })); //in built string handling for post
  app.use(express.static(path.join(__dirname, "public")));
 
 /*
@@ -50,8 +53,23 @@ app.get("/logout", (req, res) => {
   
 });
 app.get("/test", (req, res) => {
-  res.render("test", { title: "test" });
+  res.render("test", { title:"test" });
 });
+
+app.post("/user", urlencodedParser, (req, res) => {
+  console.log(req.body);
+  res.render("user-fetched", { data:req.body, title:"Profile", userProfile:{nickname: "Caleb"}});
+});
+
+/*
+ * Post Handler
+ */
+
+/*app.post('/handler', function (req, res){
+  console.log(req.body);
+  res.send(req.body);
+});
+
 
 /*
  app.get("/", (req, res) => {

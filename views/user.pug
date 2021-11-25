@@ -15,8 +15,13 @@ block layout-content
         p Email : 00325521@coyote.csusb.edu
         img(src="Caleb.jpg", alt="Me" width="200" height="200")
       
-      input.ghost-input(name='city', type='text', placeholder='Enter a City', required='')
-      input.ghost-button(type='submit', value='Fetch Api')
+      form(action="/user", method="post", autocomplete="on", target="_self") 
+        fieldset 
+          legend Api Test Using fieldset form
+          label(for="loc")
+          input(type="text", id="loc", name="loc", placeholder="Location", required)
+          input(type="submit", value="Fetch API") 
+      
       
           
          

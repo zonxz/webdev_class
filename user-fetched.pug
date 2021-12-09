@@ -1,0 +1,34 @@
+extends layout
+
+block layout-content
+  div.View.UserView
+    h1.Banner About:#{userProfile.nickname}
+    
+    div.Message
+      div.Title
+        
+        h3 Profile:
+        h2 Entry-Level Developer
+        p Caleb Reiman
+        p CSUSB  
+        p Computer Science
+        p Email : 00325521@coyote.csusb.edu
+        img(src="Caleb.jpg", alt="Me" width="200" height="200")
+      
+      p Here are the results
+      p #{'You said: '+ data.loc}
+      p #{api}
+      
+      
+          
+         
+        
+      
+        
+    div.NavButtons
+      a(href="/logout")
+        div.NavButton Log out
+      a(href="/")
+        div.NavButton Go Back
+      a(href="/test")
+        div.NavButtons

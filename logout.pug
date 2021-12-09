@@ -1,0 +1,10 @@
+extends layout
+
+block layout-content
+  div.View.UserView
+    h1.Banner You are logged out     
+    img(src="loggedout.jpg",id="wood" width="500" height="400") 
+    h1 #{user}
+    div.NavButtons
+      a(href="/")
+        div.NavButton Login

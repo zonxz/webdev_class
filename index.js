@@ -12,7 +12,8 @@
  var express = require("express");
  var bodyParser = require("body-parser")
  const path = require("path");
- var lemon = require("./script/test.js"); //just testing importing custom script
+const { response } = require("express");
+ 
 /**
  * App Variables
  */
@@ -29,13 +30,14 @@
  app.set("view engine", "pug");
  //app.use(express.urlencoded({ extended: false })); //in built string handling for post
  app.use(express.static(path.join(__dirname, "public")));
+ app.use(bodyParser.json());
 
 /*
 *   Testing server side scripting and interpolation
 */
 
 var username = "Mr. Testname:'I was declared server side i got '";
-var me = lemon.getMe;
+
 
 
 
@@ -45,37 +47,48 @@ var me = lemon.getMe;
  app.get("/", (req, res) => {
    res.render("index", { title: "Home"});
  });
+
  app.get("/user", (req, res) => {
   res.render("user", { title: "Profile", userProfile:{nickname: "Caleb"} });
 });
+
 app.get("/logout", (req, res) => {
-  res.render("logout", { title: "LoggedOut",user:username,usrlem:me });
+  res.render("logout", { title: "LoggedOut",user:username});
   
 });
 app.get("/test", (req, res) => {
   res.render("test", { title:"test" });
 });
 
-app.post("/user", urlencodedParser, (req, res) => {
-  console.log(req.body);
-  res.render("user-fetched", { data:req.body, title:"Profile", userProfile:{nickname: "Caleb"}});
-});
 
 /*
  * Post Handler
  */
 
-/*app.post('/handler', function (req, res){
+app.post("/user", urlencodedParser, (req, res) => {
+  
+  var axios = require("axios").default;
+
+  var options = {
+  method: 'GET',
+  url: 'https://www.boredapi.com/api/activity'
+  };
+
+axios.request(options).then(function (response) {
+	console.log(response.data);
+  var j = response.data.activity
+  console.log(j);
+  var s = JSON.stringify(j);
+  console.log(s);
   console.log(req.body);
-  res.send(req.body);
+  res.render("user-fetched", { data:req.body, api:s, title:"Profile", userProfile:{nickname: "Caleb"}});
+
+  }).catch(function (error) {
+	  console.error(error);
+  });
+  
+  
 });
-
-
-/*
- app.get("/", (req, res) => {
-   res.status(200).send("ITS WORKING!!!");
- });
-*/
 
 /**
  * Server Activation
